@@ -35,15 +35,15 @@
       <td></td>
     </table>
     {% else %}
-    <h2>No Tasks Exist</h2>
+    <h3F>No Tasks Exist</h3F>
     {% endif %}
 
     <p>
-      __________________________________________________________________________________
+      ________________________________________________________________________________________________________________________________________
     </p>
 
     <label for="form"></label>
-    <h3>Add Task</h3>
+    <h4>Add Task</h4>
     <form action="/addTask/" method="POST" name="task">
       {% csrf_token %}
       <table class="center">
