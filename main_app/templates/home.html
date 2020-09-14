@@ -1,0 +1,57 @@
+{% load static %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+  </head>
+  <body>
+    <h1>Tedious Tasks</h1>
+    {% if tasks %}
+    <table class="center">
+      <tr>
+        <th>Description</th>
+        <th>Time</th>
+        <th>Person</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for task in tasks %}
+      <tr>
+        <td>{{task.description}}</td>
+        <td>{{task.time}}</td>
+        <td>{{task.person}}</td>
+        <td><a href="/deleteTask/{{task.id}}">X</a></td>
+      </tr>
+      {% endfor %}
+      <td>Total Time</td>
+      <td>{{total_time}}</td>
+      <td></td>
+    </table>
+    {% else %}
+    <h2>No Tasks Exist</h2>
+    {% endif %}
+
+    <p>
+      __________________________________________________________________________________
+    </p>
+
+    <label for="form"></label>
+    <h3>Add Task</h3>
+    <form action="/addTask/" method="POST" name="task">
+      {% csrf_token %}
+      <table class="center">
+        {{ form.as_table }}
+      </table>
+      <input type="submit" value="Add Task" class="btn" />
+    </form>
+  </body>
+</html>
+
+{% endblock %}
